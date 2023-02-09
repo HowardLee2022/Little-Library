@@ -1,56 +1,37 @@
-var bcrypt = require("bcryptjs");
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+const bcrypt = require("bcrypt")
 
-module.exports = function (sequelize, DataTypes) {
-    var User = sequelize.define("User", {
-        name: DataTypes.STRING,
-        // The email cannot be null, and must be a proper email before creation
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-            validate: {
-                isEmail: true
-            }
-        },
-        // The password cannot be null
-        password: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        preferences1: DataTypes.STRING,
-        preferences2: DataTypes.STRING,
-        preferences3: DataTypes.STRING,
-        createdAt: {
-            type: DataTypes.DATE,
-            defaultValue: new Date()
-        },
-        updatedAt: {
-            type: DataTypes.DATE,
-            defaultValue: new Date()
+class user extends Model {}
+
+user.init({
+    username:{
+        type: DataTypes.STRING,
+        allowNull:false,
+    },
+    email: {
+         type: DataTypes.STRING,
+         allowNull:false,
+         unique:true,
+         validate:{
+            isEmail:true
+         }
+    },
+    password:{
+        type:DataTypes.STRING,
+        allowNull:false,
+        validate:{
+            len:[8]
         }
-    });
+    }
+},{
+    sequelize,
+    hooks:{
+        beforeCreate:userObj=>{
+            userObj.password = bcrypt.hashSync(userObj.password,4);
+            return userObj;
+        }
+    }
+});
 
-    User.associate = function (models) {
-        // Associating User with Shoppingcart
-        // When an User is deleted, also delete any associated Shoppingcarts
-        User.hasOne(models.Shoppingcart, {
-            allowNull: true
-        });
-        /* User.hasMany(models.Book, {
-            allowNull: true
-        }); */
-        User.hasMany(models.Purchase, {
-        });
-    };
-
-    User.prototype.validPassword = function (password) {
-        return bcrypt.compareSync(password, this.password);
-    };
-
-    User.addHook("beforeCreate", function (user) {
-        user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10), null);
-    });
-
-    return User;
-};
-
+module.exports=user
