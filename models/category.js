@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class categories extends Model {}
+class category extends Model {}
 
-categories.init({
+category.init({
     categoryname:{
         type: DataTypes.STRING,
         allowNull:false,
@@ -19,4 +19,4 @@ categories.init({
     sequelize,
 });
 
-module.exports=categories
+module.exports=category

@@ -17,14 +17,15 @@ book.init({
          validate:{
             len:[1]
         }   
-    },
-    categories:{
-        type:DataTypes.INTEGER,
-    },
-    owner:{
-        type:DataTypes.INTEGER,
-        allowNull:false
     }
+    // ,
+    // genre:{
+    //     type:DataTypes.INTEGER,
+    // },
+    // owner:{
+    //     type:DataTypes.INTEGER,
+    //     allowNull:false
+    // }
 },{
     sequelize,
 });

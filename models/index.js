@@ -1,6 +1,6 @@
 const book = require("./book");
 const user = require("./user");
-const categories = require("./categories");
+const category = require("./category");
 const library = require("./library");
 
 
@@ -19,10 +19,10 @@ library.belongsTo(user,{
 })
 library.hasMany(user);
 
-book.belongsTo(categories,{
+book.belongsTo(category,{
     onDelete:"CASCADE"
 });
-categories.hasMany(book)
+category.hasMany(book)
 
 
 
@@ -30,6 +30,6 @@ categories.hasMany(book)
 module.exports ={
     book,
     user,
-    categories,
+    category,
     library
 }
