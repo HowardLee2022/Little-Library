@@ -25,12 +25,29 @@ router.post("/",(req,res)=>{
     })
 })
 
+router.get("/login",(req,res)=>{
+    res.render("login")
+})
+
+router.get("/signup",(req,res)=>{
+    res.render("signup")
+})
 
 
-
-
-
-
+router.post("/",(req,res)=>{
+    user.create({
+    username:req.body.username,
+     email:req.body.email,
+     password:req.body.password
+    }).then(userData=>{
+    //  req.session.userId = userData.id;
+    //  req.session.userEmail = userData.email;
+    //  res.json(userData)
+    }).catch(err=>{
+     console.log(err);
+     res.status(500).json({msg:"oh noes!",err})
+    })
+ })
 
 
 

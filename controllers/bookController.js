@@ -12,13 +12,11 @@ router.get("/",(req,res)=>{
 })
 //Creating ubook
 router.post("/",(req,res)=>{
-    console.log(req.body)
     book.create({
         bookname:req.body.bookname,
         author:req.body.author,
-        category:req.body.category,
-        userId:req.body.userId
     }).then(bookData=>{
+        console.log(bookData);
         res.json(bookData)
     }).catch(err=>{
         console.log(err);
@@ -27,6 +25,10 @@ router.post("/",(req,res)=>{
 })
 
 
+
+router.get("/upload",(req,res)=>{
+    res.render("upload")
+})
 
 
 
