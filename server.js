@@ -5,6 +5,7 @@
 // // *** Dependencies
 // // =============================================================
 var express = require("express");
+const allRoutes=require('./controllers');
 // var path = require("path")
 
 // var session = require("express-session");
@@ -24,11 +25,11 @@ var PORT = process.env.PORT || 3000;
 // app.use(compression())
 
 // // Requiring our models for syncing
-const { user,book,library,categories}=require('./models');
+const { user,book,library,category}=require('./models');
 
-// // Sets up the Express app to handle data parsing
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+// // Sets up the Express app to handle data parsing. Interpret JSON in Insomnia/server
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // // Set Handlebars.
 // var exphbs = require("express-handlebars");
@@ -48,6 +49,7 @@ const { user,book,library,categories}=require('./models');
 // app.use(passport.session());
 
 // // Routes
+app.use(allRoutes);
 // // =============================================================
 app.get("/", (req, res) => {
   res.send("Server Test Little Library");
@@ -56,7 +58,7 @@ app.get("/", (req, res) => {
 
 // // Syncing our sequelize models and then starting our Express app
 // // =============================================================
-sequelize.sync({ force: true }).then(function () {
+sequelize.sync({ force: false }).then(function () {
   app.listen(PORT, function () {
     console.log("App listening on PORT" + PORT);
   });
