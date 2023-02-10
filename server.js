@@ -4,7 +4,7 @@
 // // ******************************************************************************
 // // *** Dependencies
 // // =============================================================
-// var express = require("express");
+var express = require("express");
 // var path = require("path")
 
 // var session = require("express-session");
@@ -13,18 +13,18 @@
 
 // // Compress
 // var compression = require('compression')
-
+const sequelize = require("./config/connection");
 
 // // Sets up the Express App
 // // =============================================================
-// var app = express();
-// var PORT = process.env.PORT || 8090;
+var app = express();
+var PORT = process.env.PORT || 3000;
 
 // // compress all responses
 // app.use(compression())
 
 // // Requiring our models for syncing
-// var db = require("./models");
+const { user,book,library,categories}=require('./models');
 
 // // Sets up the Express app to handle data parsing
 // app.use(express.urlencoded({ extended: true }));
@@ -49,17 +49,15 @@
 
 // // Routes
 // // =============================================================
-// require("./routes/html-routes.js")(app);
-// require("./routes/user-api-routes.js")(app);
-// require("./routes/book-api-routes.js")(app);
-// require("./routes/shoppingcart-api-routes.js")(app);
-// require("./routes/purchase-api-routes.js")(app);
+app.get("/", (req, res) => {
+  res.send("Server Test Little Library");
+});
+
 
 // // Syncing our sequelize models and then starting our Express app
 // // =============================================================
-// /* { force: true } */
-// db.sequelize.sync().then(function() {
-//   app.listen(PORT, function() {
-//     console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
-//   });
-// });
+sequelize.sync({ force: true }).then(function () {
+  app.listen(PORT, function () {
+    console.log("App listening on PORT" + PORT);
+  });
+});
