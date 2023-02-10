@@ -9,7 +9,7 @@ library.init({
         allowNull:false,
     },
     availability: {
-         type: sequelize.BOOLEAN,
+         type: DataTypes.BOOLEAN,
          defaultValue:true
     },
     heldby:{

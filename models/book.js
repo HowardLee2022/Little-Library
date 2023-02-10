@@ -12,7 +12,7 @@ book.init({
         }   
     },
     author: {
-         type: sequelize.STRING,
+         type: DataTypes.STRING,
          allowNull:false,
          validate:{
             len:[1]
