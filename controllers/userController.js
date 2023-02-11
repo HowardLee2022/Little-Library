@@ -40,16 +40,37 @@ router.post("/",(req,res)=>{
      email:req.body.email,
      password:req.body.password
     }).then(userData=>{
-    //  req.session.userId = userData.id;
-    //  req.session.userEmail = userData.email;
-    //  res.json(userData)
+     req.session.userId = userData.id;
+     req.session.userEmail = userData.email;
+     res.json(userData)
     }).catch(err=>{
      console.log(err);
      res.status(500).json({msg:"oh noes!",err})
     })
  })
 
-
+ router.post("/login",(req,res)=>{
+    user.findOne({
+    where:{
+     email:req.body.email
+    }
+    }).then(userData=>{
+     if(!userData){
+         return res.status(401).json({msg:"incorrect email or password"})
+     } else {
+         if(bcrypt.compareSync(req.body.password,userData.password)){
+             req.session.userId = userData.id;
+             req.session.userEmail = userData.email;
+             return res.json(userData)
+         } else {
+             return res.status(401).json({msg:"incorrect email or password"})
+         }
+     }
+    }).catch(err=>{
+     console.log(err);
+     res.status(500).json({msg:"oh noes!",err})
+    })
+ })
 
 
 
