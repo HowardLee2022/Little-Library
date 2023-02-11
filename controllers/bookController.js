@@ -12,9 +12,13 @@ router.get("/",(req,res)=>{
 })
 //Creating ubook
 router.post("/",(req,res)=>{
+    if(!req.session.userId){
+        return res.status(403).json({msg:"login first post"})
+     };
     book.create({
         bookname:req.body.bookname,
         author:req.body.author,
+        userId:req.session.userId
     }).then(bookData=>{
         console.log(bookData);
         res.json(bookData)
