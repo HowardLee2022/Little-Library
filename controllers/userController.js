@@ -10,6 +10,7 @@ router.get("/",(req,res)=>{
         res.status(500).json({msg:"Error with user routes!",err})
     })
 })
+
 //Creating users
 router.post("/",(req,res)=>{
     console.log(req.body)
@@ -25,6 +26,17 @@ router.post("/",(req,res)=>{
     })
 })
 
+// Find book and users 
+router.get("/:id",(req,res)=>{
+    user.findByPk(req.params.id,{
+        include:[book]
+    }).then(userData=>{
+        res.json(userData)
+    }).catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"Error with getting user and associated books",err})
+    })
+})
 
 
 

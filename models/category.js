@@ -15,6 +15,13 @@ category.init({
          type: DataTypes.BOOLEAN,
          defaultValue:true
     },
+    // bookId:{
+    //     type: DataTypes.INTEGER,
+    //      allowNull:false,
+    //      validate:{
+    //         len:[1]
+    //     }  
+    // },
 },{
     sequelize,
 });

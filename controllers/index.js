@@ -7,16 +7,13 @@ router.use("/api/users",userRoutes);
 const bookRoutes = require('./bookController');
 router.use("/api/books",bookRoutes);
 
+const categoryRoutes = require('./categoryController');
+router.use("/api/category",categoryRoutes);
 
 
 
 
-
-
-
-
-
-
+ 
 
 
 
