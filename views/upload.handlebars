@@ -1,0 +1,48 @@
+<ul class="nav nav-tabs justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link " href="/">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">BookShelf</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" href="#">Cart</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link active" href="/api/books/upload">upload</a>
+  </li>
+</ul>
+<h1 class="display-6 text-center">Add a Book to the Library!</h1>
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col">
+            <form>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Name of Book</label>
+    <input class="form-control" id="book-name" placeholder="Harry Potter">
+  </div>
+   <div class="form-group">
+    <label for="exampleFormControlInput1">Author</label>
+    <input class="form-control" id="book-author" placeholder="J.K. Rowling">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Category</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Description/Summary</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <button class="btn btn-primary" id="addbookbtn">add book</button>
+</form>
+        </div>
+    </div>
+</div>
+
+<script src="/js/upload.js"></script>

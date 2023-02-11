@@ -12,13 +12,16 @@ router.get("/",(req,res)=>{
 })
 //Creating book
 router.post("/",(req,res)=>{
-    console.log(req.body)
+    if(!req.session.userId){
+        return res.status(403).json({msg:"login first post"})
+     };
     book.create({
         bookname:req.body.bookname,
         author:req.body.author,
         categoryId:req.body.categoryId,
-        userId:req.body.userId
+        //userId:req.session.userId
     }).then(bookData=>{
+        console.log(bookData);
         res.json(bookData)
     }).catch(err=>{
         console.log(err);
@@ -26,17 +29,22 @@ router.post("/",(req,res)=>{
     })
 })
 
-//getting user by book
-router.get("/:id",(req,res)=>{
-    book.findByPk(req.params.id,{
-        include:[user]
-    }).then(bookData=>{
-        res.json(bookData)
-    }).catch(err=>{
-        console.log(err);
-        res.status(500).json({msg:"Error with getting book and associated user!",err})
-    })
-})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
