@@ -17,15 +17,21 @@ book.init({
          validate:{
             len:[1]
         }   
-    }
-    // ,
-    // genre:{
-    //     type:DataTypes.INTEGER,
+    },
+    // categorytype:{
+    //     type: DataTypes.STRING,
+    //      allowNull:false,
+    //      validate:{
+    //         len:[1]
+    //     }  
     // },
-    // owner:{
-    //     type:DataTypes.INTEGER,
-    //     allowNull:false
-    // }
+    // userId:{
+    //     type: DataTypes.INTEGER,
+    //      allowNull:false,
+    //      validate:{
+    //         len:[1]
+    //     }  
+    // },
 },{
     sequelize,
 });

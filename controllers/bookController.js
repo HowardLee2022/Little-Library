@@ -1,6 +1,6 @@
 const express=require('express');
 const router = express.Router();
-const {user, book} = require('../models');
+const {user, book, category} = require('../models');
 
 router.get("/",(req,res)=>{
     book.findAll().then(bookData=>{
@@ -10,7 +10,7 @@ router.get("/",(req,res)=>{
         res.status(500).json({msg:"Error with user routes!",err})
     })
 })
-//Creating ubook
+//Creating book
 router.post("/",(req,res)=>{
     if(!req.session.userId){
         return res.status(403).json({msg:"login first post"})
@@ -18,7 +18,8 @@ router.post("/",(req,res)=>{
     book.create({
         bookname:req.body.bookname,
         author:req.body.author,
-        userId:req.session.userId
+        categoryId:req.body.categoryId,
+        //userId:req.session.userId
     }).then(bookData=>{
         console.log(bookData);
         res.json(bookData)
@@ -29,10 +30,6 @@ router.post("/",(req,res)=>{
 })
 
 
-
-router.get("/upload",(req,res)=>{
-    res.render("upload")
-})
 
 
 
