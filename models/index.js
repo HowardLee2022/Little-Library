@@ -12,17 +12,31 @@ user.hasMany(book)
 book.belongsTo(category,{
     onDelete:"CASCADE"
 });
+
 category.hasMany(book)
 
-book.belongsTo(library)
-library.hasMany(book,{
-    onDelete:"CASCADE"
-});
 
-user.belongsTo(library)
-library.hasMany(user,{
-    onDelete:"CASCADE"
-});
+library.belongsTo(book)
+
+library.belongsTo(user)
+
+// book.belongsTo(library)
+
+// library.hasMany(book,{
+//     onDelete:"CASCADE"
+// });
+
+
+
+// user.belongsTo(library)
+
+
+// library.hasMany(user,{
+//     onDelete:"CASCADE"
+// });
+
+// library.hasMany(user)
+
 
 
 module.exports ={

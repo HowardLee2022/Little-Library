@@ -32,6 +32,11 @@ router.post("/",(req,res)=>{
     })
 })
 
+router.get("/upload",(req,res)=>{
+    res.render("upload")
+})
+
+
 // Find book with owner attach
 router.get("/:id",(req,res)=>{
     book.findByPk(req.params.id,{
@@ -72,10 +77,37 @@ router.delete("/:id",(req,res)=>{
     })
 });
 
+router.post("/",(req,res)=>{
+    if(!req.session.userId){
+        return res.status(403).json({msg:"login first post"})
+     };
+    book.findone({ where: { bookname: req.body.bookname }
+    }).then(bookData=>{
+        library.create({
+            book: bookData.id,
+            availability: true,
+            heldby:null
+        })
+        res.json(bookData)
+    }).catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"Error with creating book!",err})
+    })
+})
 
 
 
 
+
+// router.get("/",(req,res)=>{
+//     book.findAll(
+//         {include:[user]}).then(bookData=>{
+//         res.json(bookData)
+//     }).catch(err=>{
+//         console.log(err);
+//         res.status(500).json({msg:"Error with user routes!",err})
+//     })
+// })
 
 
 
