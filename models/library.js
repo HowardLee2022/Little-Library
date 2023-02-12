@@ -12,7 +12,7 @@ library.init({
          type: DataTypes.BOOLEAN,
          defaultValue:true
     },
-    heldby:{
+    borrowby:{
         type:DataTypes.INTEGER,
     }
 },{

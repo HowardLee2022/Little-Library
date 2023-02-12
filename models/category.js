@@ -10,11 +10,7 @@ category.init({
         validate:{
             len:[1]
         }   
-    },
-    fiction: {
-         type: DataTypes.BOOLEAN,
-         defaultValue:true
-    },
+    }
     // bookId:{
     //     type: DataTypes.INTEGER,
     //      allowNull:false,
