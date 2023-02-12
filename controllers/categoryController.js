@@ -16,7 +16,6 @@ router.post("/",(req,res)=>{
     console.log(req.body)
     category.create({
         categoryname:req.body.categoryname,
-        fiction:req.body.fiction,
         bookId:req.body.bookId
     }).then(categoryData=>{
         res.json(categoryData)
@@ -28,15 +27,43 @@ router.post("/",(req,res)=>{
 
 //getting book by category
 router.get("/:id",(req,res)=>{
-    book.findByPk(req.params.id,{
-        include:[category]
-    }).then(bookData=>{
-        res.json(bookData)
+    category.findByPk(req.params.id,{
+        include:[book]
+    }).then(categoryData=>{
+        res.json(categoryData)
     }).catch(err=>{
         console.log(err);
         res.status(500).json({msg:"Error with getting book and associated user!",err})
     })
 })
+
+// Uodate a category
+router.put("/:id",(req,res)=>{
+    category.update(req.body,{
+        where:{
+            id:req.params.id
+        }
+    }).then(categoryData=>{
+        res.json(categoryData)
+    }).catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"Cannot edit category",err})
+    })
+});
+
+// Delete a category
+router.delete("/:id",(req,res)=>{
+    category.destroy({
+        where:{
+            id:req.params.id
+        }
+    }).then(categoryData=>{
+        res.json(categoryData)
+    }).catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"Oh no, cannot delete category",err})
+    })
+});
 
 
 

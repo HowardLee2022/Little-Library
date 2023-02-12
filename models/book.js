@@ -18,6 +18,10 @@ book.init({
             len:[1]
         }   
     },
+    fiction: {
+        type: DataTypes.BOOLEAN,
+        defaultValue:true
+   }
     // categorytype:{
     //     type: DataTypes.STRING,
     //      allowNull:false,
