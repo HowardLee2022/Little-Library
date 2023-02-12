@@ -5,7 +5,7 @@ document.querySelector("#addbookbtn").addEventListener("click",e=>{
         author:document.querySelector("#book-author").value
     }
   
-    fetch("/api/books/",{
+    fetch("/api/book/",{
         method:"POST",
         body:JSON.stringify(bookobj),
         headers:{

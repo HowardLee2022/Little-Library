@@ -47,6 +47,17 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
+
+// app.get("/signup",(req,res)=>{
+//     res.render("signup")
+// })
+
+// app.get("/upload",(req,res)=>{
+//     res.render("upload")
+// })
+
+
+
 sequelize.sync({ force: false }).then(function() {
     app.listen(PORT, function() {
     console.log('App listening on PORT ' + PORT);

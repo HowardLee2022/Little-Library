@@ -1,9 +1,9 @@
-// const express=require('express');
-// const router = express.Router();
-// const {book, category} = require('../models');
+const express=require('express');
+const router = express.Router();
+const {book, category,library} = require('../models');
 
 // router.get("/",(req,res)=>{
-//     category.findAll().then(categoryData=>{
+//     library.findAll().then(categoryData=>{
 //         res.json(categoryData)
 //     }).catch(err=>{
 //         console.log(err);
@@ -11,19 +11,33 @@
 //     })
 // })
 
+router.get("/",(req,res)=>{
+    library.findAll({
+        include:[book]
+    }).then(categoryData=>{
+        res.json(categoryData)
+    }).catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"Error with category routes!",err})
+    })
+})
+
+
 // //Creating category COME BACK TO DO DROP BOX! LIMIT ONLY 1 SELECTION FOR NOW
-// router.post("/",(req,res)=>{
-//     console.log(req.body)
-//     category.create({
-//         categoryname:req.body.categoryname,
-//         bookId:req.body.bookId
-//     }).then(categoryData=>{
-//         res.json(categoryData)
-//     }).catch(err=>{
-//         console.log(err);
-//         res.status(500).json({msg:"Error with creating category!",err})
-//     })
-// })
+router.post("/",(req,res)=>{
+    console.log(req.body)
+    library.create({
+        availability:req.body.availability,
+        bookId:req.body.bookId
+    }).then(categoryData=>{
+        res.json(categoryData)
+    }).catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"Error with creating category!",err})
+    })
+})
+
+
 
 // //getting book by category
 // router.get("/:id",(req,res)=>{
@@ -68,4 +82,4 @@
 
 
 
-// module.exports = router;
+module.exports = router;

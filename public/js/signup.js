@@ -7,7 +7,7 @@ document.querySelector("#createuserbtn").addEventListener("click",e=>{
       password:document.querySelector("#password-name").value
   }
 
-  fetch("/api/users/",{
+  fetch("/api/user/",{
       method:"POST",
       body:JSON.stringify(userobj),
       headers:{

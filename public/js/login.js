@@ -5,7 +5,7 @@ document.querySelector("#log-btn").addEventListener("submit",e=>{
       password:document.querySelector("#password-lig").value
   }
   console.log(loginObj)
-  fetch("/api/users/login",{
+  fetch("/api/user/login",{
       method:"POST",
       body:JSON.stringify(loginObj),
       headers:{
@@ -22,6 +22,6 @@ document.querySelector("#log-btn").addEventListener("submit",e=>{
 
 document.getElementById("sign-btn").addEventListener("click", e=>{
   e.preventDefault();
-  location.href="/api/users/signup"
+  location.href="/api/user/signup"
 })
 
