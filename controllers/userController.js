@@ -26,12 +26,16 @@ router.post("/",(req,res)=>{
     })
 })
 
-// router.get("/login",(req,res)=>{
-//     res.render("login")
-// })
+router.get("/login",(req,res)=>{
+    res.render("login")
+})
+
+router.get("/signup",(req,res)=>{
+    res.render("signup")
+})
 
 // Find book and users 
-router.get("/:id",(req,res)=>{
+router.get("/:id",(req,res)=>{z
     user.findByPk(req.params.id,{
         include:[book]
     }).then(userData=>{
@@ -69,9 +73,6 @@ router.delete("/:id",(req,res)=>{
         res.status(500).json({msg:"Oh no, cannot delete user",err})
     })
 });
-// router.get("/signup",(req,res)=>{
-//     res.render("signup")
-// })
 
 
 // router.post("/",(req,res)=>{
