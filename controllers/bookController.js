@@ -11,20 +11,21 @@ const {user, book, category, library} = require('../models');
 //     })
 // })
 //Creating book
+
+
 router.post("/",(req,res)=>{
     console.log(req.body)
-    // if(!req.session.userId){
-    //     return res.status(403).json({msg:"login first post"})
-    //  };
-    book.create( req.body
-    //     {
-    //     bookname:req.body.bookname,
-    //     author:req.body.author,
-    //     fiction:req.body.fiction,
-    //     // categoryId:req.body.categoryId,
-    //     // userId:req.body.userId
-    //     //userId:req.session.userId
-    // }
+    if(!req.session.userId){
+        return res.status(403).json({msg:"login first post"})
+     };
+    book.create(
+        {
+        bookname:req.body.bookname,
+        author:req.body.author,
+        fiction:req.body.fiction,
+        categoryId:req.body.categoryId,
+        ownerId:req.session.userId
+    }
     
     ).then(bookData=>{
         console.log(bookData);
@@ -36,7 +37,8 @@ router.post("/",(req,res)=>{
 })
 
 router.get("/upload",(req,res)=>{
-    res.render("upload")
+    res.render("upload",{
+        session:req.session})
 })
 
 
@@ -80,41 +82,6 @@ router.delete("/:id",(req,res)=>{
     })
 });
 
-router.post("/addto",(req,res)=>{
-    // if(!req.session.userId){
-    //     return res.status(403).json({msg:"login first post"})
-    //  };
-    book.findone({ where: { bookname: req.body.bookname }
-    }).then(bookData=>{
-        library.create({
-            bookId: bookData.id,
-            availability: true,
-        })
-        res.json(bookData)
-    }).catch(err=>{
-        console.log(err);
-        res.status(500).json({msg:"Error with creating book!",err})
-    })
-})
-
-router.get("/get",(req,res)=>{
-    // if(!req.session.userId){
-    //     return res.status(403).json({msg:"login first post"})
-    //  };
-    book.findone({ where: { bookname: req.body.bookname }
-    }).then(bookData=>{
-        // // library.create({
-        // //     bookId: bookData.id,
-        // //     availability: true,
-        // })
-        res.json(bookData)
-    }).catch(err=>{
-        console.log(err);
-        res.status(500).json({msg:"Error with creating book!",err})
-    })
-})
-
-
 
 router.get("/",(req,res)=>{
     book.findAll(
@@ -124,6 +91,8 @@ router.get("/",(req,res)=>{
         },{
             model: user,
             as: 'borrower'
+        },{
+            model: category
         }]}).then(bookData=>{
         res.json(bookData)
     }).catch(err=>{
@@ -132,6 +101,118 @@ router.get("/",(req,res)=>{
     })
 })
 
+// router.get("/category/:id", (req, res) => {
+//     book
+//       .findAll({
+//         include: [
+//           {
+//             model: user,
+//             as: "owner",
+//           },
+//           {
+//             model: user,
+//             as: "borrower",
+//           },
+//         ],
+//         where: { categoryId: req.params.id, borrowerId: null },
+//       })
+//       .then(bookData=> {
+//         res.json(bookData)
+//         console.log(bookData)
+        
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         res.status(500).json({ msg: "Error with user routes!", err });
+//       });
+//   });
+
+
+
+  
+router.get("/category/:id", (req, res) => {
+    book
+      .findAll({
+        include: [
+          {
+            model: user,
+            as: "owner",
+          },
+          {
+            model: user,
+            as: "borrower",
+          },
+        ],
+        where: { categoryId: req.params.id, borrowerId: null },
+      })
+      .then(bookData=> {
+        const data = bookData.map(book=>book.toJSON());
+        res.render("test", {
+        userdate:data,
+        session:req.session})
+        console.log(data)
+;
+      })
+  });
+
+
+
+//   router.get("/dashboard",(req,res)=>{
+//     if(!req.session.userId){
+//         return res.redirect("/")
+//     }
+//     User.findByPk(req.session.userId,{
+//         include:[Post]
+//     }).then(userdata=>{
+//         console.log(userdata)
+//         const hbsData = userdata.toJSON();
+//         res.render("dashboard",hbsData)
+//     })
+// })
+
+   
+// router.get("/category/:id", (req, res) => {
+//     book
+//       .findAll({
+//         include: [
+//           {
+//             model: user,
+//             as: "owner",
+//           },
+//           {
+//             model: user,
+//             as: "borrower",
+//           },
+//         ],
+//         where: { categoryId: req.params.id, borrowerId: null },
+//       })
+//       .then(bookData=> {
+//         res.render("test",{
+//             book:bookData.toJSON(),
+//         })
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         res.status(500).json({ msg: "Error with user routes!", err });
+//       });
+//   });
+
+
+// router.get("/",(req,res)=>{
+//     book.findAll(
+//         {include: [{
+//             model: user,
+//             as: 'owner'
+//         },{
+//             model: user,
+//             as: 'borrower'
+//         }]}).then(bookData=>{
+//         res.json(bookData)
+//     }).catch(err=>{
+//         console.log(err);
+//         res.status(500).json({msg:"Error with user routes!",err})
+//     })
+// })
 
 
 

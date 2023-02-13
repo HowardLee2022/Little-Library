@@ -15,7 +15,7 @@ document.querySelector("#createuserbtn").addEventListener("click",e=>{
       }
   }).then(res=>{
       if(res.ok){
-         alert("created user!")
+        location.href="/"
       } else {
           alert("error")
       }
