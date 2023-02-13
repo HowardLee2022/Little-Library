@@ -14,15 +14,9 @@ book.belongsTo(category,{
 });
 category.hasMany(book)
 
-book.belongsTo(library)
-library.hasMany(book,{
-    onDelete:"CASCADE"
-});
+library.belongsTo(book)
 
-user.belongsTo(library)
-library.hasMany(user,{
-    onDelete:"CASCADE"
-});
+library.belongsTo(user)
 
 
 module.exports ={
