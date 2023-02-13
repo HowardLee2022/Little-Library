@@ -15,7 +15,20 @@ book.belongsTo(user,{
 book.belongsTo(user,{
     onDelete:"CASCADE",
     as:'borrower'
+    onDelete:"CASCADE",
+    as:'owner',
+    foreignKey: {
+        allowNull: false
+    }
 });
+
+book.belongsTo(user,{
+    onDelete:"CASCADE",
+    as:'borrower'
+});
+
+
+// user.hasMany(book)
 
 
 // user.hasMany(book)
@@ -24,14 +37,11 @@ book.belongsTo(category,{
     onDelete:"CASCADE"
 });
 
+
 category.hasMany(book)
 
 library.belongsTo(book)
 
-user.belongsTo(library)
-library.hasMany(user,{
-    onDelete:"CASCADE"
-});
 
 
 module.exports ={
