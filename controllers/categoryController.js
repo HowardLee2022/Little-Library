@@ -37,6 +37,10 @@ router.get("/:id",(req,res)=>{
     })
 })
 
+router.get("/booksearch",(req,res)=>{
+    res.render("booksearch")
+})
+
 // Uodate a category
 router.put("/:id",(req,res)=>{
     category.update(req.body,{
