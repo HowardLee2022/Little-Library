@@ -28,11 +28,9 @@
   <div class="form-group">
     <label for="exampleFormControlSelect1">Category</label>
     <select class="form-control" id="category-id">
-      <option>Horror</option>
-      <option>Drama</option>
-      <option>Comedy</option>
-      <option></option>
-      <option>5</option>
+      {{#each categories}}
+      <option value="{{id}}">{{name}}</option>
+      {{/each}}      
     </select>
   </div>
   <div class="form-group">
