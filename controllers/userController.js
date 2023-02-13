@@ -35,7 +35,7 @@ router.get("/signup",(req,res)=>{
 })
 
 // Find book and users 
-router.get("/:id",(req,res)=>{
+router.get("/:id",(req,res)=>{z
     user.findByPk(req.params.id,{
         include:[book]
     }).then(userData=>{

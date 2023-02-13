@@ -1,29 +1,32 @@
 const express=require('express');
 const router = express.Router();
-const {user, book, category} = require('../models');
+const {user, book, category, library} = require('../models');
 
-router.get("/",(req,res)=>{
-    book.findAll().then(bookData=>{
-        res.json(bookData)
-    }).catch(err=>{
-        console.log(err);
-        res.status(500).json({msg:"Error with user routes!",err})
-    })
-})
+// router.get("/",(req,res)=>{
+//     book.findAll().then(bookData=>{
+//         res.json(bookData)
+//     }).catch(err=>{
+//         console.log(err);
+//         res.status(500).json({msg:"Error with user routes!",err})
+//     })
+// })
 //Creating book
 router.post("/",(req,res)=>{
     console.log(req.body)
     // if(!req.session.userId){
     //     return res.status(403).json({msg:"login first post"})
     //  };
-    book.create({
-        bookname:req.body.bookname,
-        author:req.body.author,
-        fiction:req.body.fiction,
-        categoryId:req.body.categoryId,
-        userId:req.body.userId
-        //userId:req.session.userId
-    }).then(bookData=>{
+    book.create( req.body
+    //     {
+    //     bookname:req.body.bookname,
+    //     author:req.body.author,
+    //     fiction:req.body.fiction,
+    //     // categoryId:req.body.categoryId,
+    //     // userId:req.body.userId
+    //     //userId:req.session.userId
+    // }
+    
+    ).then(bookData=>{
         console.log(bookData);
         res.json(bookData)
     }).catch(err=>{
@@ -77,17 +80,33 @@ router.delete("/:id",(req,res)=>{
     })
 });
 
-router.post("/",(req,res)=>{
-    if(!req.session.userId){
-        return res.status(403).json({msg:"login first post"})
-     };
+router.post("/addto",(req,res)=>{
+    // if(!req.session.userId){
+    //     return res.status(403).json({msg:"login first post"})
+    //  };
     book.findone({ where: { bookname: req.body.bookname }
     }).then(bookData=>{
         library.create({
-            book: bookData.id,
+            bookId: bookData.id,
             availability: true,
-            heldby:null
         })
+        res.json(bookData)
+    }).catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"Error with creating book!",err})
+    })
+})
+
+router.get("/get",(req,res)=>{
+    // if(!req.session.userId){
+    //     return res.status(403).json({msg:"login first post"})
+    //  };
+    book.findone({ where: { bookname: req.body.bookname }
+    }).then(bookData=>{
+        // // library.create({
+        // //     bookId: bookData.id,
+        // //     availability: true,
+        // })
         res.json(bookData)
     }).catch(err=>{
         console.log(err);
@@ -97,17 +116,21 @@ router.post("/",(req,res)=>{
 
 
 
-
-
-// router.get("/",(req,res)=>{
-//     book.findAll(
-//         {include:[user]}).then(bookData=>{
-//         res.json(bookData)
-//     }).catch(err=>{
-//         console.log(err);
-//         res.status(500).json({msg:"Error with user routes!",err})
-//     })
-// })
+router.get("/",(req,res)=>{
+    book.findAll(
+        {include: [{
+            model: user,
+            as: 'owner'
+        },{
+            model: user,
+            as: 'borrower'
+        }]}).then(bookData=>{
+        res.json(bookData)
+    }).catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"Error with user routes!",err})
+    })
+})
 
 
 
