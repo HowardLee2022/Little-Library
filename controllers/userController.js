@@ -74,7 +74,7 @@ router.delete("/:id",(req,res)=>{
     })
 });
 
-
+// create user and then login (save for later)
 // router.post("/",(req,res)=>{
 //     user.create({
 //     username:req.body.username,
@@ -89,7 +89,7 @@ router.delete("/:id",(req,res)=>{
 //      res.status(500).json({msg:"oh noes!",err})
 //     })
 //  })
-
+// login to seesion(save for later)
 //  router.post("/login",(req,res)=>{
 //     user.findOne({
 //     where:{
