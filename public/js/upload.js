@@ -20,7 +20,6 @@ document.querySelector("#addbookbtn").addEventListener("click",e=>{
         bookname:document.querySelector("#book-name").value,
         author:document.querySelector("#book-author").value,
         categoryId:cateid,
-        ownerId: session.userId
     }
   
     fetch("/api/book/",{

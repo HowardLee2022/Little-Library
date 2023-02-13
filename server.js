@@ -48,6 +48,10 @@ app.get("/", (req, res) => {
     session:req.session});
 });
 
+app.get("/yo",(req,res)=>{
+  res.render("booksearch")
+})
+
 
 
 sequelize.sync({ force: false }).then(function() {

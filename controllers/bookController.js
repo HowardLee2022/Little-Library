@@ -18,15 +18,14 @@ router.post("/",(req,res)=>{
     if(!req.session.userId){
         return res.status(403).json({msg:"login first post"})
      };
-    book.create( req.body
-    //     {
-    //     bookname:req.body.bookname,
-    //     author:req.body.author,
-    //     fiction:req.body.fiction,
-    //     // categoryId:req.body.categoryId,
-    //     // userId:req.body.userId
-    //     //userId:req.session.userId
-    // }
+    book.create(
+        {
+        bookname:req.body.bookname,
+        author:req.body.author,
+        fiction:req.body.fiction,
+        categoryId:req.body.categoryId,
+        ownerId:req.session.userId
+    }
     
     ).then(bookData=>{
         console.log(bookData);
@@ -102,6 +101,101 @@ router.get("/",(req,res)=>{
     })
 })
 
+// router.get("/category/:id", (req, res) => {
+//     book
+//       .findAll({
+//         include: [
+//           {
+//             model: user,
+//             as: "owner",
+//           },
+//           {
+//             model: user,
+//             as: "borrower",
+//           },
+//         ],
+//         where: { categoryId: req.params.id, borrowerId: null },
+//       })
+//       .then(bookData=> {
+//         res.json(bookData)
+//         console.log(bookData)
+        
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         res.status(500).json({ msg: "Error with user routes!", err });
+//       });
+//   });
+
+
+
+  
+router.get("/category/:id", (req, res) => {
+    book
+      .findAll({
+        include: [
+          {
+            model: user,
+            as: "owner",
+          },
+          {
+            model: user,
+            as: "borrower",
+          },
+        ],
+        where: { categoryId: req.params.id, borrowerId: null },
+      })
+      .then(bookData=> {
+        const data = bookData.map(book=>book.toJSON());
+        res.render("test", {
+        userdate:data,
+        session:req.session})
+        console.log(data)
+;
+      })
+  });
+
+
+
+//   router.get("/dashboard",(req,res)=>{
+//     if(!req.session.userId){
+//         return res.redirect("/")
+//     }
+//     User.findByPk(req.session.userId,{
+//         include:[Post]
+//     }).then(userdata=>{
+//         console.log(userdata)
+//         const hbsData = userdata.toJSON();
+//         res.render("dashboard",hbsData)
+//     })
+// })
+
+   
+// router.get("/category/:id", (req, res) => {
+//     book
+//       .findAll({
+//         include: [
+//           {
+//             model: user,
+//             as: "owner",
+//           },
+//           {
+//             model: user,
+//             as: "borrower",
+//           },
+//         ],
+//         where: { categoryId: req.params.id, borrowerId: null },
+//       })
+//       .then(bookData=> {
+//         res.render("test",{
+//             book:bookData.toJSON(),
+//         })
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         res.status(500).json({ msg: "Error with user routes!", err });
+//       });
+//   });
 
 
 // router.get("/",(req,res)=>{
