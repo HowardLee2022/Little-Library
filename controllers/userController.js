@@ -1,6 +1,7 @@
 const express=require('express');
 const router = express.Router();
 const {user, book} = require('../models');
+const bcrypt = require("bcrypt");
 
 router.get("/",(req,res)=>{
     user.findAll().then(userData=>{
@@ -12,19 +13,19 @@ router.get("/",(req,res)=>{
 })
 
 //Creating users
-router.post("/",(req,res)=>{
-    console.log(req.body)
-    user.create({
-        username:req.body.username,
-        email:req.body.email,
-        password:req.body.password
-    }).then(userData=>{
-        res.json(userData)
-    }).catch(err=>{
-        console.log(err);
-        res.status(500).json({msg:"Error with creating user!",err})
-    })
-})
+// router.post("/",(req,res)=>{
+//     console.log(req.body)
+//     user.create({
+//         username:req.body.username,
+//         email:req.body.email,
+//         password:req.body.password
+//     }).then(userData=>{
+//         res.json(userData)
+//     }).catch(err=>{
+//         console.log(err);
+//         res.status(500).json({msg:"Error with creating user!",err})
+//     })
+// })
 
 router.get("/login",(req,res)=>{
     res.render("login")
@@ -32,6 +33,11 @@ router.get("/login",(req,res)=>{
 
 router.get("/signup",(req,res)=>{
     res.render("signup")
+})
+
+router.get("/logout",(req,res)=>{
+    req.session.destroy();
+    res.render("home")
 })
 
 // Find book and users 
@@ -75,43 +81,43 @@ router.delete("/:id",(req,res)=>{
 });
 
 // create user and then login (save for later)
-// router.post("/",(req,res)=>{
-//     user.create({
-//     username:req.body.username,
-//      email:req.body.email,
-//      password:req.body.password
-//     }).then(userData=>{
-//      req.session.userId = userData.id;
-//      req.session.userEmail = userData.email;
-//      res.json(userData)
-//     }).catch(err=>{
-//      console.log(err);
-//      res.status(500).json({msg:"oh noes!",err})
-//     })
-//  })
+router.post("/",(req,res)=>{
+    user.create({
+    username:req.body.username,
+     email:req.body.email,
+     password:req.body.password
+    }).then(userData=>{
+     req.session.userId = userData.id;
+     req.session.userEmail = userData.email;
+     res.json(userData)
+    }).catch(err=>{
+     console.log(err);
+     res.status(500).json({msg:"oh noes!",err})
+    })
+ })
 // login to seesion(save for later)
-//  router.post("/login",(req,res)=>{
-//     user.findOne({
-//     where:{
-//      email:req.body.email
-//     }
-//     }).then(userData=>{
-//      if(!userData){
-//          return res.status(401).json({msg:"incorrect email or password"})
-//      } else {
-//          if(bcrypt.compareSync(req.body.password,userData.password)){
-//              req.session.userId = userData.id;
-//              req.session.userEmail = userData.email;
-//              return res.json(userData)
-//          } else {
-//              return res.status(401).json({msg:"incorrect email or password"})
-//          }
-//      }
-//     }).catch(err=>{
-//      console.log(err);
-//      res.status(500).json({msg:"oh noes!",err})
-//     })
-//  })
+ router.post("/login",(req,res)=>{
+    user.findOne({
+    where:{
+     email:req.body.email
+    }
+    }).then(userData=>{
+     if(!userData){
+         return res.status(401).json({msg:"incorrect email or password"})
+     } else {
+         if(bcrypt.compareSync(req.body.password,userData.password)){
+             req.session.userId = userData.id;
+             req.session.userEmail = userData.email;
+             return res.json(userData)
+         } else {
+             return res.status(401).json({msg:"incorrect email or password"})
+         }
+     }
+    }).catch(err=>{
+     console.log(err);
+     res.status(500).json({msg:"oh noes!",err})
+    })
+ })
 
 
 

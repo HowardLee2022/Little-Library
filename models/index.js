@@ -4,17 +4,9 @@ const category = require("./category");
 const library = require("./library");
 
 
-book.belongsTo(user,{
-    onDelete:"CASCADE",
-    as:'owner',
-    foreignKey: {
-        allowNull: false
-    }
-});
+
 
 book.belongsTo(user,{
-    onDelete:"CASCADE",
-    as:'borrower'
     onDelete:"CASCADE",
     as:'owner',
     foreignKey: {
@@ -40,7 +32,7 @@ book.belongsTo(category,{
 
 category.hasMany(book)
 
-library.belongsTo(book)
+// library.belongsTo(book)
 
 
 

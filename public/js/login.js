@@ -1,8 +1,9 @@
-document.querySelector("#log-btn").addEventListener("submit",e=>{
+document.querySelector("#log-btn").addEventListener("click",e=>{
   e.preventDefault();
+  
   const loginObj = {
       email:document.querySelector("#email-log").value,
-      password:document.querySelector("#password-lig").value
+      password:document.querySelector("#password-log").value
   }
   console.log(loginObj)
   fetch("/api/user/login",{
@@ -13,7 +14,7 @@ document.querySelector("#log-btn").addEventListener("submit",e=>{
       }
   }).then(res=>{
       if(res.ok){
-         location.href="/dashboard"
+         location.href="/"
       } else {
           alert("error")
       }

@@ -43,16 +43,31 @@
 
 <ul class="nav nav-tabs justify-content-center">
   <li class="nav-item">
-    <a class="nav-link active" href="#">Home</a>
+    <a class="nav-link active" href="/">Home</a>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">BookShelf</a>
-  </li>
+   {{#if session.userId}}
     <li class="nav-item">
-    <a class="nav-link" href="#">Cart</a>
-  </li>
+    <a class="nav-link" href="#">book search</a>
+    </li>
     <li class="nav-item">
     <a class="nav-link" href="/api/book/upload">upload</a>
+    <li class="nav-item">
+    <a class="nav-link" href="/api/user/logout">Log out</a>
+    </li>
   </li>
+            {{else}}
+                <li class="nav-item">
+                <a class="nav-link" href="/api/user/login">Login</a>
+                </li>
+            {{/if}}
+
 </ul>
+
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container justify-content-center">
+    <h1 class="display-4">Welcome to the Little Library</h1>
+    <p class="lead">A library system where people can share books and borrow books!</p>
+  </div>
+</div>
 

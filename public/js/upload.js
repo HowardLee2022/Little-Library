@@ -4,12 +4,12 @@ document.querySelector("#addbookbtn").addEventListener("click",e=>{
 
     if(category === "Horror"){
         var cateid =1;
-    // }else if( category ==="comdedy"){
-    //     const cateid =2;
-    // }else if( category ==="drama"){
-    //     const cateid =3;
-    // }else if( category ==="romance"){
-    //     const cateid =4;
+    }else if( category ==="Science Fiction"){
+        var cateid =2;
+    }else if( category ==="Fantasy"){
+        var cateid =3;
+    }else if( category ==="Comedy"){
+        var cateid =4;
     }else{
         var cateid = 5
     }
@@ -20,7 +20,7 @@ document.querySelector("#addbookbtn").addEventListener("click",e=>{
         bookname:document.querySelector("#book-name").value,
         author:document.querySelector("#book-author").value,
         categoryId:cateid,
-        ownerId: 1
+        ownerId: session.userId
     }
   
     fetch("/api/book/",{

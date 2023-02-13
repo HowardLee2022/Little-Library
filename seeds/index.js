@@ -16,7 +16,7 @@ const seed = async ()=>{
         },
         {
             username:"evan33",
-            email:"howard@howard.com",
+            email:"howard1@howard.com",
             password:"password"
         },
     ],{
