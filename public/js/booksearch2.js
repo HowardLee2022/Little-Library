@@ -18,3 +18,25 @@ document.querySelector("#searchform").addEventListener("click",e=>{
 
  
 })
+
+
+const onClick = document.querySelector("#buttonbox");
+
+onClick.addEventListener("click", function(event){
+    var element = event.target;
+    var number = element.getAttribute("data-number");
+    
+    
+    fetch(`/api/book/${number}`,{
+        method:"PUT",
+    }).then(res=>{
+        if(res.ok){
+           location.href="/"
+        } else {
+            alert("dont click there")
+        }
+    })
+})
+
+
+

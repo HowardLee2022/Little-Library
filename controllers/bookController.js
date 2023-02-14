@@ -56,7 +56,9 @@ router.get("/:id",(req,res)=>{
 
 // Uodate a book
 router.put("/:id",(req,res)=>{
-    book.update(req.body,{
+    book.update({
+        borrowerId:req.session.userId
+    },{
         where:{
             id:req.params.id
         }
@@ -120,12 +122,38 @@ router.get("/category/:id", (req, res) => {
         where: { categoryId: req.params.id, borrowerId: null },
       })
       .then(bookData=> {
+        console.log(bookData)
         const data = bookData.map(book=>book.toJSON());
         res.render("test", {
         userdate:data,
         session:req.session})
       })
   });
+
+
+//   router.get("/howard", (req, res) => {
+//     book
+//       .findAll({
+//         include: [
+//           {
+//             model: user,
+//             as: "owner",
+//           },
+//           {
+//             model: user,
+//             as: "borrower",
+//           },
+//         ],
+//         where: { borrowerId as user=1},
+//       })
+//       .then(bookData=> {
+//         console.log(bookData)
+//         const data = bookData.map(book=>book.toJSON());
+//         res.render("currentbook", {
+//         userdate:data,
+//         session:req.session})
+//       })
+//   });
 
 // router.get("/",(req,res)=>{
 //     book.findAll(
