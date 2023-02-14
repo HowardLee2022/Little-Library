@@ -1,3 +1,26 @@
+
+<ul class="nav nav-tabs justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link " href="/">Home</a>
+  </li>
+   {{#if session.userId}}
+    <li class="nav-item">
+    <a class="nav-link active" href="/yo">book search</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link" href="/api/book/upload">upload</a>
+    <li class="nav-item">
+    <a class="nav-link" href="/api/user/logout">Log out</a>
+    </li>
+  </li>
+            {{else}}
+                <li class="nav-item">
+                <a class="nav-link" href="/api/user/login">Login</a>
+                </li>
+            {{/if}}
+
+</ul>
+
 <div class="form-group">
     <label for="exampleFormControlSelect1">Category</label>
     {{!-- <select class="form-control" id="searchcategories">
@@ -14,9 +37,6 @@
     </select>
 </div>
 <button class="btn btn-primary" id="searchform">Explore this category</button>
-<div id="results">
-
-</div>
 
 
 <script src="/js/booksearch2.js"></script>
