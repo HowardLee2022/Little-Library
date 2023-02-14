@@ -120,7 +120,33 @@ router.post("/",(req,res)=>{
  })
 
 
+  router.get("/book/own",(req,res)=>{
+    book.findAll({
+       where: {ownerId:req.session.userId}
+    }).then(bookData=>{
+        const data = bookData.map(book=>book.toJSON());
+        res.render("mybooks", {
+        userdate:data,
+        session:req.session})
+    }).catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"Error with getting book and associated owner",err})
+    })
+})
 
+
+router.delete("/book/:id",(req,res)=>{
+    book.destroy({
+        where:{
+            id:req.params.id
+        }
+    }).then(bookData=>{
+        res.json(bookData)
+    }).catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"Oh no, cannot delete book",err})
+    })
+});
 
 
 

@@ -26,17 +26,18 @@ onClick.addEventListener("click", function(event){
     var element = event.target;
     var number = element.getAttribute("data-number");
     
-    
+if(element.matches("#checkbtn")){
     fetch(`/api/book/${number}`,{
         method:"PUT",
     }).then(res=>{
         if(res.ok){
            location.href="/"
         } else {
-            alert("dont click there")
+            alert("You already borrowed a Book")
         }
     })
-})
+    }
+    })
 
 
 

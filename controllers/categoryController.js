@@ -11,6 +11,11 @@ router.get("/",(req,res)=>{
     })
 })
 
+
+router.get("/booksearch",(req,res)=>{
+    res.render("booksearch")
+})
+
 //Creating category COME BACK TO DO DROP BOX! LIMIT ONLY 1 SELECTION FOR NOW
 router.post("/",(req,res)=>{
     console.log(req.body)
