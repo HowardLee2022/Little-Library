@@ -44,7 +44,7 @@
 
 
 
-
+<section id="buttonbox">
 {{#each userdate}}
 <div class="card">
   <div class="card-header">
@@ -53,10 +53,11 @@
   <div class="card-body">
     <h5 class="card-title">{{bookname}}</h5>
     <p class="card-text">{{author}}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <a href="#" class="btn btn-primary" data-number="{{id}}">Go somewhere</a>
   </div>
 </div>
 {{/each}}
+</section>
 
 
 

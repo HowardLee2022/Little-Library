@@ -41,7 +41,7 @@ router.get("/logout",(req,res)=>{
 })
 
 // Find book and users 
-router.get("/:id",(req,res)=>{z
+router.get("/:id",(req,res)=>{
     user.findByPk(req.params.id,{
         include:[book]
     }).then(userData=>{
@@ -124,7 +124,49 @@ router.post("/",(req,res)=>{
 
 
 
+  
+//  router.get("/book", (req, res) => {
+//     book
+//       .findAll({
+//         where: { borrowerId:session.userId },
+//       })
+//       .then(bookData=> {
+//         const data = bookData.map(book=>book.toJSON());
+//         res.render("currentbook", {
+//         userdate:data,
+//         session:req.session})
+//       })
+//   });
 
+  
+  
+// router.get("/book", (req, res) => {
+//         book
+//           .findAll({
+//             include: [
+//               {
+//                 model: user,
+//                 as: "owner",
+//               },
+//               {
+//                 model: user,
+//                 as: "borrower",
+//               },
+//             ],
+//             where: { ownerId: 1 },
+//           })
+//           .then(bookData=> {
+//             console.log(bookData)
+//             const data = bookData.map(book=>book.toJSON());
+//             res.render("currentbook", {
+//             userdate:data,
+//             session:req.session})
+//           })
+//       });
+    
+
+
+ 
 
 
 
