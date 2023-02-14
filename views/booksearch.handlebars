@@ -1,11 +1,16 @@
-
 <ul class="nav nav-tabs justify-content-center">
   <li class="nav-item">
-    <a class="nav-link " href="/">Home</a>
+    <a class="nav-link" href="/">Home</a>
   </li>
    {{#if session.userId}}
     <li class="nav-item">
-    <a class="nav-link active" href="/yo">book search</a>
+    <a class="nav-link active" href="/booksearch">book search</a>
+    </li>
+     <li class="nav-item">
+    <a class="nav-link" href="/api/book/currentuser/book">checkedbook</a>
+    </li>
+      <li class="nav-item">
+    <a class="nav-link" href="/api/user/book/own">mybook</a>
     </li>
     <li class="nav-item">
     <a class="nav-link" href="/api/book/upload">upload</a>
@@ -32,8 +37,8 @@
       <option>Horror</option>
       <option>Science Fiction</option>
       <option>Fantasy</option>
-      <option>Romance</option>
-      <option>History</option>
+      <option>Comedy</option>
+      <option>Adventure Story</option>
     </select>
 </div>
 <button class="btn btn-primary" id="searchform">Explore this category</button>

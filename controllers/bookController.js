@@ -56,14 +56,24 @@ router.get("/:id",(req,res)=>{
 
 // Uodate a book
 router.put("/:id",(req,res)=>{
-    book.update({
-        borrowerId:req.session.userId
-    },{
-        where:{
-            id:req.params.id
-        }
-    }).then(bookData=>{
-        res.json(bookData)
+    book.findOne({
+    where:{
+    borrowerId:req.session.userId
+    }
+    }).then(userData => {
+        if(userData){
+            return res.status(401).json({msg:"You already borrowed a book!"})
+        }else{
+            book.update({
+                borrowerId:req.session.userId
+            },{
+                where:{
+                    id:req.params.id
+                }
+            }).then(bookData=>{
+                res.json(bookData)
+    })
+    }
     }).catch(err=>{
         console.log(err);
         res.status(500).json({msg:"Cannot edit book",err})
@@ -124,36 +134,54 @@ router.get("/category/:id", (req, res) => {
       .then(bookData=> {
         console.log(bookData)
         const data = bookData.map(book=>book.toJSON());
-        res.render("test", {
+        res.render("results", {
         userdate:data,
         session:req.session})
       })
   });
 
 
-//   router.get("/howard", (req, res) => {
-//     book
-//       .findAll({
-//         include: [
-//           {
-//             model: user,
-//             as: "owner",
-//           },
-//           {
-//             model: user,
-//             as: "borrower",
-//           },
-//         ],
-//         where: { borrowerId as user=1},
-//       })
-//       .then(bookData=> {
-//         console.log(bookData)
-//         const data = bookData.map(book=>book.toJSON());
-//         res.render("currentbook", {
-//         userdate:data,
-//         session:req.session})
-//       })
-//   });
+  router.get("/currentuser/book", (req, res) => {
+    book
+      .findAll({
+        where:{borrowerId:req.session.userId}
+      })
+      .then(bookData=> {
+        console.log(bookData)
+        const data = bookData.map(book=>book.toJSON());
+        res.render("currentbook", {
+        userdate:data,
+        session:req.session})
+      })
+  });
+
+  router.put("/currentuser/book/remove", (req, res) => {
+    book
+      .update({borrowerId:null},
+        {
+        where:{borrowerId:req.session.userId}
+      })
+      .then(bookData=> {
+        res.render("currentbook", {
+        session:req.session})
+      })
+  });
+
+
+
+  router.get("/book/own",(req,res)=>{
+    book.findAll({
+       where: {ownerId:req.session.userId}
+    }).then(bookData=>{
+        const data = bookData.map(book=>book.toJSON());
+        res.render("mybooks", {
+        userdate:data,
+        session:req.session})
+    }).catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"Error with getting book and associated owner",err})
+    })
+})
 
 // router.get("/",(req,res)=>{
 //     book.findAll(

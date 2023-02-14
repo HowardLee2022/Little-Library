@@ -47,10 +47,13 @@
   </li>
    {{#if session.userId}}
     <li class="nav-item">
-    <a class="nav-link" href="/yo">book search</a>
+    <a class="nav-link" href="/booksearch">book search</a>
     </li>
      <li class="nav-item">
-    <a class="nav-link" href="/api/book/howard">currentbook</a>
+    <a class="nav-link" href="/api/book/currentuser/book">checkedbook</a>
+    </li>
+      <li class="nav-item">
+    <a class="nav-link" href="/api/user/book/own">mybook</a>
     </li>
     <li class="nav-item">
     <a class="nav-link" href="/api/book/upload">upload</a>

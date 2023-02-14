@@ -41,6 +41,11 @@ document.querySelector("#searchForm").addEventListener("submit",e=>{
     })
 })
 
+
+
+
+
+
 document.querySelector("#searchcategory").addEventListener("click",e=>{
     const categoryId = document.querySelector("#bookcategories").value;
     if(!categories.includes(categoryId)){
