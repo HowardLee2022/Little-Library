@@ -49,7 +49,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/yo",(req,res)=>{
-  res.render("booksearch")
+  res.render("booksearch",{
+    session:req.session
+  })
 })
 
 
