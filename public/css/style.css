@@ -10,3 +10,28 @@ img{
     width: 150px;
     height: 150px;
 }
+.navbar-nav li a:hover {
+    color: #007bff;
+  }
+
+body {
+    background-color: #c5ab9d;
+}
+
+.form-container {
+    border: 2px solid #5e4447;
+    border-radius: 5px;
+    background-color: #ab7878;
+    padding: 20px;
+}
+
+#book-name, #book-author, #category-id {
+    background-color:#E0C6C6;
+    border-color: #5e4447;
+}
+
+.form-control {
+    background-color:#E0C6C6;
+    border-color: #5e4447;
+}
+

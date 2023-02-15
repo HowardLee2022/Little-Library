@@ -1,31 +1,3 @@
-<ul class="nav nav-tabs justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link" href="/">Home</a>
-  </li>
-   {{#if session.userId}}
-    <li class="nav-item">
-    <a class="nav-link" href="/booksearch">book search</a>
-    </li>
-     <li class="nav-item">
-    <a class="nav-link" href="/api/book/currentuser/book">checkedbook</a>
-    </li>
-      <li class="nav-item active">
-    <a class="nav-link" href="/api/user/book/own">mybook</a>
-    </li>
-    <li class="nav-item">
-    <a class="nav-link" href="/api/book/upload">upload</a>
-    <li class="nav-item">
-    <a class="nav-link" href="/api/user/logout">Log out</a>
-    </li>
-  </li>
-            {{else}}
-                <li class="nav-item">
-                <a class="nav-link" href="/api/user/login">Login</a>
-                </li>
-            {{/if}}
-
-</ul>
-
 <section id="btnbox">
 {{#each userdate}}
 <div class="card">
