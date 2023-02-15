@@ -18,24 +18,14 @@ book.init({
             len:[1]
         }   
     },
+    url: {
+        type: DataTypes.STRING,
+        allowNull:true
+   },
     fiction: {
         type: DataTypes.BOOLEAN,
         defaultValue:true
    }
-    // categorytype:{
-    //     type: DataTypes.STRING,
-    //      allowNull:false,
-    //      validate:{
-    //         len:[1]
-    //     }  
-    // },
-    // userId:{
-    //     type: DataTypes.INTEGER,
-    //      allowNull:false,
-    //      validate:{
-    //         len:[1]
-    //     }  
-    // },
 },{
     sequelize,
 });
