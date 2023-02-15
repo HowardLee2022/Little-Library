@@ -9,11 +9,11 @@ cloudinary.config({
     api_secret: "Vxo6GxnN1TR3Zne-JlqupY1yI8s"
   });
 
-
+//route to create a book
 router.post("/",(req,res)=>{
     console.log(req.body)
     if(!req.session.userId){
-        return res.status(403).json({msg:"login first post"})
+        return res.status(403).json({msg:"login first"})
      };
     book.create(
         {
@@ -34,24 +34,18 @@ router.post("/",(req,res)=>{
 })
 
 router.get("/upload",(req,res)=>{
+    if(!req.session.userId){
+        return res.render("home")
+        // return res.status(403).json({msg:"login first"})
+     };
     res.render("upload",{
         session:req.session})
 })
 
 
-// Find book with owner attach
-router.get("/:id",(req,res)=>{
-    book.findByPk(req.params.id,{
-        include:[user]
-    }).then(bookData=>{
-        res.json(bookData)
-    }).catch(err=>{
-        console.log(err);
-        res.status(500).json({msg:"Error with getting book and associated owner",err})
-    })
-})
 
-// Uodate a book
+
+// user borrow a book
 router.put("/:id",(req,res)=>{
     book.findOne({
     where:{
@@ -77,42 +71,9 @@ router.put("/:id",(req,res)=>{
     })
 });
 
-// Delete a book
-router.delete("/:id",(req,res)=>{
-    book.destroy({
-        where:{
-            id:req.params.id
-        }
-    }).then(bookData=>{
-        res.json(bookData)
-    }).catch(err=>{
-        console.log(err);
-        res.status(500).json({msg:"Oh no, cannot delete book",err})
-    })
-});
 
 
-router.get("/",(req,res)=>{
-    book.findAll(
-        {include: [{
-            model: user,
-            as: 'owner'
-        },{
-            model: user,
-            as: 'borrower'
-        },{
-            model: category
-        }]}).then(bookData=>{
-        res.json(bookData)
-    }).catch(err=>{
-        console.log(err);
-        res.status(500).json({msg:"Error with user routes!",err})
-    })
-})
-
-
-
-  
+//find all book by category and borrowerId is null to represent noone has borrow the book
 router.get("/category/:id", (req, res) => {
     book
       .findAll({
@@ -137,8 +98,11 @@ router.get("/category/:id", (req, res) => {
       })
   });
 
-
+//Route to display the book the user is currently borrowing
   router.get("/currentuser/book", (req, res) => {
+    if(!req.session.userId){
+        return res.render("home")
+     };
     book
       .findAll({
         where:{borrowerId:req.session.userId}
@@ -152,6 +116,7 @@ router.get("/category/:id", (req, res) => {
       })
   });
 
+// Route to unborrow the book that the user is borrowing.
   router.put("/currentuser/book/remove", (req, res) => {
     book
       .update({borrowerId:null},
@@ -163,45 +128,6 @@ router.get("/category/:id", (req, res) => {
         session:req.session})
       })
   });
-
-
-
-  router.get("/book/own",(req,res)=>{
-    book.findAll({
-       where: {ownerId:req.session.userId}
-    }).then(bookData=>{
-        const data = bookData.map(book=>book.toJSON());
-        res.render("mybooks", {
-        userdate:data,
-        session:req.session})
-    }).catch(err=>{
-        console.log(err);
-        res.status(500).json({msg:"Error with getting book and associated owner",err})
-    })
-})
-
-// router.get("/",(req,res)=>{
-//     book.findAll(
-//         {include: [{
-//             model: user,
-//             as: 'owner'
-//         },{
-//             model: user,
-//             as: 'borrower'
-//         }]}).then(bookData=>{
-//         res.json(bookData)
-//     }).catch(err=>{
-//         console.log(err);
-//         res.status(500).json({msg:"Error with user routes!",err})
-//     })
-// })
-
-
-
-
-
-
-
 
 
 module.exports = router;
