@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs justify-content-center">
+{{!-- <ul class="nav nav-tabs justify-content-center">
   <li class="nav-item">
     <a class="nav-link" href="/">Home</a>
   </li>
@@ -24,40 +24,35 @@
                 </li>
             {{/if}}
 
-</ul>
+</ul> --}}
 
-
-<h1 class="display-6 text-center">Add a Book to the Library!</h1>
-<div class="container">
-    <div class="row align-items-start">
-        <div class="col">
-            <form>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Name of Book</label>
-    <input class="form-control" id="book-name" placeholder="Harry Potter">
-  </div>
-   <div class="form-group">
-    <label for="exampleFormControlInput1">Author</label>
-    <input class="form-control" id="book-author" placeholder="J.K. Rowling">
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Category</label>
-    <select class="form-control" id="category-id">
-      <option>Horror</option>
-      <option>Science Fiction</option>
-      <option>Fantasy</option>
-      <option>Comedy</option>
-      <option>Adventure Story</option>
-    </select>
-  </div>
-  {{!-- <div class="form-group">
-    <label for="exampleFormControlTextarea1">Description/Summary</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div> --}}
-  <button class="btn btn-primary" id="addbookbtn">add book</button>
-</form>
-        </div>
+<div class="container my-4">
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="form-container">
+    <h1>Add a Book to the Library!</h1>
+    <form>
+      <div class="form-group">
+        <label for="exampleFormControlInput1" class="mb-1">Title</label>
+        <input class="form-control mb-2" id="book-name" placeholder="Harry Potter">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1" class="mb-1">Author</label>
+        <input class="form-control mb-2" id="book-author" placeholder="J.K. Rowling">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1" class="mb-1">Genre</label>
+        <select class="form-control mb-2" id="category-id">
+          <option>Horror</option>
+          <option>Science Fiction</option>
+          <option>Fantasy</option>
+          <option>Comedy</option>
+          <option>Adventure Story</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" id="addbookbtn">Add Book</button>
+    </form>
     </div>
+  </div>
 </div>
 
 <script src="/js/upload.js"></script>

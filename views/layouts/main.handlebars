@@ -6,16 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Little Library</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<main>{{{body}}}</main>
-<footer class="bg-light text-center text-lg-start">
- 
-  <div class="text-center p-3 fixed-bottom " style="background-color: rgba(0, 0, 0, 0.2);">
-    THE QUIET GUYS LLC @ ALL RIGHTS RESERVED
-  </div>
-  
-</footer>
+  <header class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid px-3 py-2">
+      <div class="row w-100">
+        <div class="col-md-6">
+          <h1 class="navbar-brand">Little Library</h1>
+        </div>
+        <div class="col-md-6 text-right">
+          <ul class="navbar-nav ml-auto justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            {{#if session.userId}}
+              <li class="nav-item">
+                <a class="nav-link" href="/booksearch">book search</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/api/book/currentuser/book">checkedbook</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/api/user/book/own">mybook</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/api/book/upload">upload</a>
+              <li class="nav-item">
+                <a class="nav-link" href="/api/user/logout">Log out</a>
+              </li>
+              </li>
+                {{else}}
+                    <li class="nav-item">
+                    <a class="nav-link" href="/api/user/login">Login</a>
+                    </li>
+                {{/if}}
+            </ul>
+        </div>
+      </div>
+    </div>  
+  </header>
+  <main>{{{body}}}</main>
+  <footer class="">
+    <div class="text-center p-3 fixed-bottom bg-light">
+      THE QUIET GUYS LLC @ ALL RIGHTS RESERVED
+    </div> 
+  </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>
