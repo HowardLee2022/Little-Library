@@ -38,7 +38,23 @@ const seed = async ()=>{
         },
         {
             categoryname:"Adventure Story"
+        },
+        {
+            categoryname:"Children Book"
+        },
+        {
+            categoryname:"Romance"
+        },
+        {
+            categoryname:"Mystery"
+        },
+        {
+            categoryname:"Memoir"
+        }, 
+        {
+            categoryname:"Others"
         }
+        
         
     ])
     process.exit(1) 

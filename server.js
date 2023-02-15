@@ -49,6 +49,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/booksearch",(req,res)=>{
+  if(!req.session.userId){
+    return res.render("home")
+ };
   res.render("booksearch",{
     session:req.session
   })

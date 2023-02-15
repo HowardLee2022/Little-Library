@@ -35,8 +35,18 @@ document.querySelector("#addbookbtn").addEventListener("click", (e) => {
     var cateid = 3;
   } else if (category === "Comedy") {
     var cateid = 4;
-  } else {
+  } else if(category ==="Adventure Story"){
     var cateid = 5;
+  }else if (category ==="Children Book"){
+    var cateid = 6;
+  }else if (category ==="Romance"){
+    var cateid = 7;
+  }else if (category ==="Mystery"){
+    var cateid = 8;
+  }else if (category ==="Memoir"){
+    var cateid = 9;
+  } else{
+    var cateid = 10;
   }
 
   const bookobj = {
@@ -45,11 +55,7 @@ document.querySelector("#addbookbtn").addEventListener("click", (e) => {
     url: url,
     categoryId: cateid,
   };
-  // if (projectData) {
-  //   document
-  //     .querySelector("#cloudinary-img")
-  //     .setAttribute("src", projectData.image);
-  // }
+
   fetch("/api/book/", {
     method: "POST",
     body: JSON.stringify(bookobj),

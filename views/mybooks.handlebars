@@ -5,8 +5,10 @@
     Book
   </div>
   <div class="card-body">
+    <img id="cloudinary-img" src={{url}} alt="">
     <h5 class="card-title">{{bookname}}</h5>
     <p class="card-text">{{author}}</p>
+    <p class="card-text">{{category.categoryname}}</p>
     <button id="checkbtn" class="btn btn-primary" data-number="{{id}}">Delete book</button>
   </div>
 </div>

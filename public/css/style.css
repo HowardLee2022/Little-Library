@@ -5,6 +5,11 @@
     font-family: sans-serif;
 }
 
+img{
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+}
 .navbar-nav li a:hover {
     color: #007bff;
   }
