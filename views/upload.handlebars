@@ -1,0 +1,63 @@
+<ul class="nav nav-tabs justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link" href="/">Home</a>
+  </li>
+   {{#if session.userId}}
+    <li class="nav-item">
+    <a class="nav-link" href="/booksearch">book search</a>
+    </li>
+     <li class="nav-item">
+    <a class="nav-link" href="/api/book/currentuser/book">checkedbook</a>
+    </li>
+      <li class="nav-item">
+    <a class="nav-link" href="/api/user/book/own">mybook</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link active" href="/api/book/upload">upload</a>
+    <li class="nav-item">
+    <a class="nav-link" href="/api/user/logout">Log out</a>
+    </li>
+  </li>
+            {{else}}
+                <li class="nav-item">
+                <a class="nav-link" href="/api/user/login">Login</a>
+                </li>
+            {{/if}}
+
+</ul>
+
+
+<h1 class="display-6 text-center">Add a Book to the Library!</h1>
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col">
+            <form>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Name of Book</label>
+    <input class="form-control" id="book-name" placeholder="Harry Potter">
+  </div>
+   <div class="form-group">
+    <label for="exampleFormControlInput1">Author</label>
+    <input class="form-control" id="book-author" placeholder="J.K. Rowling">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Category</label>
+    <select class="form-control" id="category-id">
+      <option>Horror</option>
+      <option>Science Fiction</option>
+      <option>Fantasy</option>
+      <option>Comedy</option>
+      <option>Adventure Story</option>
+    </select>
+  </div>
+  {{!-- <div class="form-group">
+    <label for="exampleFormControlTextarea1">Description/Summary</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div> --}}
+  <button class="btn btn-primary" id="addbookbtn">add book</button>
+</form>
+        </div>
+    </div>
+</div>
+
+<script src="/js/upload.js"></script>
