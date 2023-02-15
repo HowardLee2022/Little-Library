@@ -1,16 +1,13 @@
 const express=require('express');
 const router = express.Router();
-const {user, book, category, library} = require('../models');
+const {user, book, category} = require('../models');
+const cloudinary = require('cloudinary').v2;
 
-// router.get("/",(req,res)=>{
-//     book.findAll().then(bookData=>{
-//         res.json(bookData)
-//     }).catch(err=>{
-//         console.log(err);
-//         res.status(500).json({msg:"Error with user routes!",err})
-//     })
-// })
-//Creating book
+cloudinary.config({
+    cloud_name: "diwgmpnbw",
+    api_key: "512739967525622",
+    api_secret: "Vxo6GxnN1TR3Zne-JlqupY1yI8s"
+  });
 
 
 router.post("/",(req,res)=>{
@@ -22,13 +19,13 @@ router.post("/",(req,res)=>{
         {
         bookname:req.body.bookname,
         author:req.body.author,
-        fiction:req.body.fiction,
+        url:req.body.url,
         categoryId:req.body.categoryId,
         ownerId:req.session.userId
     }
     
     ).then(bookData=>{
-        console.log(bookData);
+        // console.log(bookData);
         res.json(bookData)
     }).catch(err=>{
         console.log(err);

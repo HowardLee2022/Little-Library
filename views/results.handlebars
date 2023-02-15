@@ -45,9 +45,6 @@
 <button class="btn btn-primary" id="searchform">Explore this category</button>
 
 
-
-
-
 <section id="buttonbox">
 {{#each userdate}}
 <div class="card">
@@ -55,6 +52,7 @@
     Book
   </div>
   <div class="card-body">
+    <img id="cloudinary-img" src={{url}} alt="">
     <h5 class="card-title">{{bookname}}</h5>
     <p class="card-text">{{author}}</p>
     <button id="checkbtn" class="btn btn-primary" data-number="{{id}}">Borrow this book</button>
