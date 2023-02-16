@@ -5,7 +5,7 @@ document.querySelector("#checkbtn").addEventListener("click",e=>{
         method:"PUT"
     }).then(res=>{
         if(res.ok){
-           location.href="/api/book/currentuser/book"
+           location.href="/"
         } else {
             alert("error")
         }

@@ -118,8 +118,7 @@ router.get("/category/:id", (req, res) => {
 
 // Route to unborrow the book that the user is borrowing.
   router.put("/currentuser/book/remove", (req, res) => {
-    book
-      .update({borrowerId:null},
+    book.update({borrowerId:null},
         {
         where:{borrowerId:req.session.userId}
       })
