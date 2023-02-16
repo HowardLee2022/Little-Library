@@ -11,13 +11,6 @@ category.init({
             len:[1]
         }   
     }
-    // bookId:{
-    //     type: DataTypes.INTEGER,
-    //      allowNull:false,
-    //      validate:{
-    //         len:[1]
-    //     }  
-    // },
 },{
     sequelize,
 });
