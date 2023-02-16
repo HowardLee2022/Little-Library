@@ -2,20 +2,44 @@
     box-sizing: border-box;
     margin:0;
     padding:0;
-    font-family: sans-serif;
+    font-family: 'Philosopher', sans-serif;
 }
+footer{
+    height: 50px;
+}
+header{
+    height: 80px;
+}
+main{
+    min-height: 90vh;
+    max-height: 100%;
 
+}
 img{
     object-fit: cover;
     width: 150px;
     height: 150px;
 }
 .navbar-nav li a:hover {
-    color: #007bff;
+    color: #78AB92;
   }
+
+.navbar-nav li {
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+/* .navbar{
+    height: 80px;
+} */
+
+/* h1 {
+    font-family: 'Philosopher', sans-serif;
+} */
 
 body {
     background-color: #c5ab9d;
+    padding-top: 80px;
 }
 
 .form-container {
@@ -23,15 +47,51 @@ body {
     border-radius: 5px;
     background-color: #ab7878;
     padding: 20px;
+    width: 550px;
 }
 
-#book-name, #book-author, #category-id {
+/* #book-name, #book-author, #category-id {
     background-color:#E0C6C6;
     border-color: #5e4447;
-}
+} */
 
 .form-control {
     background-color:#E0C6C6;
     border-color: #5e4447;
 }
 
+.form-control:focus {
+    background-color:#E0C6C6;
+    border-color: #5e4447;
+}
+
+.btn {
+    background-color: #78AB92;
+    color: black;
+    border: 1px solid #5e4447;
+    font-size: 14px;
+    line-height: 28px;
+    height: 28x;
+}
+
+.btn-primary:hover {
+    background-color: #55656b;
+    border-color: #5e4447
+}
+
+.card {
+    background-color: #ab7878;
+    border-color: #5e4447;
+}
+
+h2 {
+
+}
+
+p {
+    font-size: 3vh;
+}
+
+#custom-footer {
+    bottom: 0;
+}

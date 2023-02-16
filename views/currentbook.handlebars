@@ -1,6 +1,6 @@
 
 
-{{#each userdate}}
+{{!-- {{#each userdate}}
 <div class="card">
   <div class="card-header">
     Book
@@ -12,7 +12,26 @@
     <button id="checkbtn" class="btn btn-primary" data-number="{{id}}">Return Book</button>
   </div>
 </div>
-{{/each}}
+{{/each}} --}}
+
+<div class="container mt-3">
+  <div class="row row-cols-1">
+    <section id="buttonbox">
+      {{#each userdate}}
+      <div class="col ">
+        <div class="card mb-3" style="max-width: 15rem;">
+        <div class="card-header"><p>{{bookname}}</p></div>
+        <div class="card-body">
+          <img id="cloudinary-img" class="mb-1" src={{url}} alt="">
+          <p class="card-text">author: {{author}}</p>
+          <button id="checkbtn" class="btn btn-primary" data-number="{{id}}">Return book</button>
+        </div>
+        </div>
+      </div>
+      {{/each}}
+    </section>  
+  </div>
+</div>
 
 
 <script src="/js/currentbook.js"></script>

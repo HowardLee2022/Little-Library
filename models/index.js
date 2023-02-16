@@ -20,10 +20,7 @@ book.belongsTo(user,{
 });
 
 
-// user.hasMany(book)
 
-
-// user.hasMany(book)
 
 book.belongsTo(category,{
     onDelete:"CASCADE"
@@ -32,7 +29,7 @@ book.belongsTo(category,{
 
 category.hasMany(book)
 
-// library.belongsTo(book)
+
 
 
 
