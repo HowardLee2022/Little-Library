@@ -42,15 +42,15 @@
 </div>
 
 {{!-- <div class="container mt-3"> --}}
-  <div class="container">
-    <section class="row"id="buttonbox">
+  <div class="container mt-3">
+    <section class="row" id="buttonbox">
       {{#each userdate}}
       <div class="col-sm-3">
-        <div class="card mb-3" style="max-width: 15rem;">
-        <div class="card-header"><p>{{bookname}}</p></div>
+        <div class="card mb-3" style="max-width: 30rem; max-height: 55rem">
+        <div class="card-header h5"><p>{{bookname}}</p></div>
         <div class="card-body">
           <img id="cloudinary-img" class="mb-1" src={{url}} alt="">
-          <p class="card-text">Author: {{author}}</p>
+          <p class="h6">Author: {{author}}</p>
           <button id="checkbtn" class="btn btn-primary" data-number="{{id}}">Borrow this book</button>
         </div>
         </div>
