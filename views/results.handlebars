@@ -1,4 +1,4 @@
-<div class="form-group">
+{{!-- <div class="form-group">
     <label for="exampleFormControlSelect1">Category</label>
      <select class="form-control" id="searchcategories">
       <option>Horror</option>
@@ -13,24 +13,68 @@
       <option>Others</option>
     </select>
 </div>
-<button class="btn btn-primary" id="searchform">Explore this category</button>
+<button class="btn btn-primary" id="searchform">Explore this category</button> --}}
 
+<div class="container my-4 col-med-6">
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="form-container">
+    <h1 class="text-center">Browse by Genre</h1>
+    <form>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Category</label>
+        <select class="form-control decorated mb-2" id="searchcategories">
+          <option>Horror</option>
+          <option>Science Fiction</option>
+          <option>Fantasy</option>
+          <option>Comedy</option>
+          <option>Adventure Story</option>
+          <option>Children's Book</option>
+          <option>Romance</option>
+          <option>Mystery</option>
+          <option>Memoir</option>
+          <option>Others</option>
+        </select>    
+        <button class="btn btn-primary" id="searchform">Explore</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
 
-<section id="buttonbox">
+{{!-- <div class="container mt-3"> --}}
+  <div class="container">
+    <section class="row"id="buttonbox">
+      {{#each userdate}}
+      <div class="col-sm-3">
+        <div class="card mb-3" style="max-width: 15rem;">
+        <div class="card-header"><p>{{bookname}}</p></div>
+        <div class="card-body">
+          <img id="cloudinary-img" class="mb-1" src={{url}} alt="">
+          <p class="card-text">Author: {{author}}</p>
+          <button id="checkbtn" class="btn btn-primary" data-number="{{id}}">Borrow this book</button>
+        </div>
+        </div>
+      </div>
+      {{/each}}
+    </section>  
+  </div>
+{{!-- </div> --}}
+
+{{!-- <section id="buttonbox">
 {{#each userdate}}
-<div class="card">
+<div class="card border-primary mb-3" style="max-width: 18rem;">
   <div class="card-header">
-    Book
+    Books
   </div>
   <div class="card-body">
     <img id="cloudinary-img" src={{url}} alt="">
-    <h5 class="card-title">{{bookname}}</h5>
+    <h5 class="card-title mb-2">{{bookname}}</h5>
     <p class="card-text">{{author}}</p>
     <button id="checkbtn" class="btn btn-primary" data-number="{{id}}">Borrow this book</button>
   </div>
 </div>
 {{/each}}
-</section>
+</section> --}}
 
 
 
