@@ -61,7 +61,7 @@ router.post("/",(req,res)=>{
       if(!req.session.userId){
         return res.render("home")
      };
-    book.findAll({include:[category]},{
+    book.findAll({
        where: {ownerId:req.session.userId}
     }).then(bookData=>{
         const data = bookData.map(book=>book.toJSON());
