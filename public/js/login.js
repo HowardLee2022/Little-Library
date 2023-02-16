@@ -16,7 +16,7 @@ document.querySelector("#log-btn").addEventListener("click",e=>{
       if(res.ok){
          location.href="/"
       } else {
-          alert("error")
+          alert("Incorrect information")
       }
   })
 })

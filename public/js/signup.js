@@ -17,7 +17,7 @@ document.querySelector("#createuserbtn").addEventListener("click",e=>{
       if(res.ok){
         location.href="/"
       } else {
-          alert("error")
+          alert("Email already Exist")
       }
   })
 })
