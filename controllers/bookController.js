@@ -104,7 +104,7 @@ router.get("/category/:id", (req, res) => {
         return res.render("home")
      };
     book
-      .findAll({
+      .findAll({include:[category]},{
         where:{borrowerId:req.session.userId}
       })
       .then(bookData=> {
