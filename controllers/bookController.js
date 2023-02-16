@@ -22,6 +22,7 @@ router.post("/",(req,res)=>{
         url:req.body.url,
         categoryId:req.body.categoryId,
         ownerId:req.session.userId
+        // borrowerId:null
     }
     
     ).then(bookData=>{
@@ -104,7 +105,7 @@ router.get("/category/:id", (req, res) => {
         return res.render("home")
      };
     book
-      .findAll({include:[category]},{
+      .findAll({
         where:{borrowerId:req.session.userId}
       })
       .then(bookData=> {
