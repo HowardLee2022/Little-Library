@@ -15,22 +15,21 @@
 {{/each}} --}}
 
 <div class="container mt-3">
-  <div class="row row-cols-1">
-    <section id="buttonbox">
-      {{#each userdate}}
-      <div class="col ">
-        <div class="card mb-3" style="max-width: 15rem;">
-        <div class="card-header"><p>{{bookname}}</p></div>
-        <div class="card-body">
-          <img id="cloudinary-img" class="mb-1" src={{url}} alt="">
-          <p class="card-text">author: {{author}}</p>
-          <button id="checkbtn" class="btn btn-primary" data-number="{{id}}">Return book</button>
-        </div>
-        </div>
+  <section class="row" id="buttonbox">
+    {{#each userdate}}
+    <div class="col-sm-3">
+      <div class="card mb-3" style="max-width: 30rem; max-height: 55rem">
+      <div class="card-header h5"><p>{{bookname}}</p></div>
+      <div class="card-body">
+        <img id="cloudinary-img" class="mb-1" src={{url}} alt="">
+        <p class="h6">Author: {{author}}</p>
+        <p class="h6">Category: {{category.categoryname}}</p>
+        <button id="checkbtn" class="btn btn-primary" data-number="{{id}}">Return book</button>
       </div>
-      {{/each}}
-    </section>  
-  </div>
+      </div>
+    </div>
+    {{/each}}
+  </section>  
 </div>
 
 
