@@ -37,7 +37,7 @@ document.querySelector("#addbookbtn").addEventListener("click", (e) => {
     var cateid = 4;
   } else if(category ==="Adventure Story"){
     var cateid = 5;
-  }else if (category ==="Children Book"){
+  }else if (category ==="Children's Book"){
     var cateid = 6;
   }else if (category ==="Romance"){
     var cateid = 7;
